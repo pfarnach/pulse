@@ -1,28 +1,25 @@
 import React, { Component } from 'react';
+import socket from '../../utils/socket';
+import _ from 'lodash';
+import MapContainer from '../MapContainer/mapContainer';
 
-/* global styles for app */
-import './styles/app.scss';
+import './style.scss';
 
-/* application components */
-import { Header } from 'components/Header';
-import { Footer } from 'components/Footer';
+function sendPulse() {
+  socket.emit('client_pulse', {});
+}
+
+const sendPulseDbd = _.throttle(sendPulse, 500, { trailing: false });
 
 export class App extends Component {
-    static propTypes = {
-        children: React.PropTypes.any,
-    }
-
-    render() {
-        return (
-            <section>
-                <Header/>
-                <div className="container" style={{"marginTop": 10, "paddingBottom": 250}}>
-                    {this.props.children}
-                </div>
-                <div>
-                    <Footer />
-                </div>
-            </section>
-        );
-    }
+  render() {
+    return (
+      <section>
+        <div className="container">
+          <MapContainer />
+          <button onClick={()=>sendPulseDbd()}>Pulse</button>
+        </div>
+      </section>
+    );
+  }
 }
