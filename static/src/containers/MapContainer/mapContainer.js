@@ -21,7 +21,7 @@ class MapContainer extends Component {
 	}
 
 	getMarkers(coords) {
-		return coords.map((coord) => <Marker key={Math.random()} position={[coord.latitude, coord.longitude]} icon={icon} />);
+		return coords.map((coord) => <Marker key={`${coord.latitude}${coord.longitude}`} position={[coord.latitude, coord.longitude]} icon={icon} />);
 	}
 
 	render() {
@@ -29,8 +29,8 @@ class MapContainer extends Component {
 			<div>
 				<Map id="map" center={[10, 0]} zoom={1}>
 			    <TileLayer
-			      url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-			      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' />
+			      url='http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
+			      attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>' />
 			    { this.getMarkers(this.props.coords) }
 			  </Map>
 		  </div>

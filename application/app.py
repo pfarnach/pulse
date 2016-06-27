@@ -25,6 +25,7 @@ def client_pulse(msg):
   for r in result:
     coord['latitude'] = float(r['latitude'])
     coord['longitude'] = float(r['longitude'])
+    coord['id'] = str(coord['latitude']) + str(coord['longitude'])
 
   emit('new_pulse', coord, broadcast=True)
 

@@ -9,7 +9,7 @@ function sendPulse() {
   socket.emit('client_pulse', {});
 }
 
-const sendPulseDbd = _.throttle(sendPulse, 500, { trailing: false });
+const sendPulseDbd = _.throttle(sendPulse, 500);
 
 export class App extends Component {
   render() {
