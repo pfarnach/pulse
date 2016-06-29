@@ -27,7 +27,7 @@ class MapContainer extends Component {
 	render() {
 		return (
 			<div>
-				<Map id="map" center={[10, 0]} zoom={1}>
+				<Map id="map" center={[10, 0]} zoom={2}>
 			    <TileLayer
 			      url='http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
 			      attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>' />

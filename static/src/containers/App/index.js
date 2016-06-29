@@ -5,21 +5,26 @@ import MapContainer from '../MapContainer/mapContainer';
 
 import './style.scss';
 
-function sendPulse() {
-  socket.emit('client_pulse', {});
-}
-
-const sendPulseDbd = _.throttle(sendPulse, 500);
+const sendPulse = _.throttle(() => socket.emit('client_pulse', {}), 250);
 
 export class App extends Component {
   render() {
     return (
-      <section>
-        <div className="container">
+      <div className="main-container">
+        <section className="content-container">
+          <div className="title-container">
+            <h1 className="title"><span className="title-1">LGBTQ</span><span className="title-2">Pulse</span></h1>
+          </div>
           <MapContainer />
-          <button onClick={()=>sendPulseDbd()}>Pulse</button>
-        </div>
-      </section>
+          <button onClick={()=>sendPulse()}>
+            <h1>Pulse</h1>
+          </button>
+          <div className="about-container">
+            <h3>About</h3>
+            <h5>It's simple - share your love and support for the LGBTQ community by pressing the button. Anyone else looking at the map will see your support pop up.</h5>
+          </div>
+        </section>
+      </div>
     );
   }
 }

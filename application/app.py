@@ -15,8 +15,6 @@ socketio = SocketIO(app)
 
 @socketio.on('client_pulse')
 def client_pulse(msg):
-  print 'request' + str(request.remote_addr)
-
   sql = text('SELECT latitude, longitude FROM t_ip_coordinates OFFSET floor(random()*3870014) LIMIT 1;');
   result = db.engine.execute(sql)
 
