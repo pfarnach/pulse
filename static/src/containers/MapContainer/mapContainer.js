@@ -28,7 +28,7 @@ class MapContainer extends Component {
 		return (
 			<div>
 				<Map id="map" 
-					center={[10, 0]} 
+					center={[10, 20]}
 					zoom={2} 
 					minZoom={1}
 					scrollWheelZoom={false} 

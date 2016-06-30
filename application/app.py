@@ -12,21 +12,34 @@ socketio = SocketIO(app)
 @socketio.on('client_pulse')
 def client_pulse(msg):
 	'''Called when server receives pulse msg from client'''
-	if IP(request.environ['REMOTE_ADDR']) == 'PUBLIC':
-		pass
+
+	ip_address = request.environ['REMOTE_ADDR']
+
+	if IP(ip_address).iptype() == 'PUBLIC':
+		while ip_address:
+			query = text("SELECT latitude, longitude FROM t_ip_coordinates WHERE ip_address LIKE '{}%' LIMIT 1".format(ip_address));
+			result = db.engine.execute(query).first()
+
+			print "result: " + str(result)
+
+			if result == None:
+				ip_address = ip_address[:-1]
+			else:
+				break
 	else:
 		sql = text('SELECT latitude, longitude FROM t_ip_coordinates OFFSET floor(random()*3870014) LIMIT 1;');
-	
-	result = db.engine.execute(sql)
+		result = db.engine.execute(sql).first()
 
-	coord = {}
-
-	for r in result:
-		coord['latitude'] = float(r['latitude'])
-		coord['longitude'] = float(r['longitude'])
+	# If found result, send coordinates over to client
+	if result:
+		coord = {}
+		coord['latitude'] = float(result['latitude'])
+		coord['longitude'] = float(result['longitude'])
 		coord['id'] = str(coord['latitude']) + str(coord['longitude'])
 
-	emit('new_pulse', coord, broadcast=True)
+		emit('new_pulse', coord, broadcast=True)
+	else:
+		emit('lookup_error', {"message": "Could not find location by IP address"})
 
 @app.route('/', methods=['GET'])
 def index():
