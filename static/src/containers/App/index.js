@@ -16,18 +16,17 @@ export class App extends Component {
             <h1 className="title"><span className="title-1">LGBTQ</span><span className="title-2">Pulse</span></h1>
           </div>
           <MapContainer />
-          <button onClick={()=>sendPulse()}>
-            <h1>CLICK</h1>
-          </button>
+          <button onClick={()=>sendPulse()}></button>
           <div className="info-container">
             <div className="how">
-              <h3>HOW TO</h3>
-              <h5>1) Click the button</h5>
-              <h5>2) Watch your dot show up on the map</h5>
+              <h3><span className="red">&#60;</span> HOW TO <span className="red">&#62;</span></h3>
+              <h5><span className="red">&#62;&#62;</span> Click the big button</h5>
+              <h5><span className="red">&#62;&#62;</span> Watch your dot pop up on the map</h5>
             </div>
             <div className="about">
-              <h3>ABOUT</h3>
-              <h5>This is meant to be a simple but important way to visualize support for the LGBTQ community around the world. Wherever you are, whenever you want, you can share your love and the rest of the world will see it.</h5>
+              <h3><span className="red">&#60;</span> ABOUT <span className="red">&#62;</span></h3>
+              <h5>This is a simple way to visualize support around the world for the LGBTQ community. Wherever you are, whenever you want, for as much time as you feel like, you can share your love and the rest of the world will see it.</h5>
+              <h5>No logins, no ads, just love.</h5>
             </div>
           </div>
         </section>

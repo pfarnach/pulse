@@ -1,1 +1,2 @@
-web: gunicorn main:app
+web: npm run build:development
+web: python manage.py runserver

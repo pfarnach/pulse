@@ -35,7 +35,8 @@ class MapContainer extends Component {
 					worldCopyJump={true}>
 			    <TileLayer
 			      url='http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
-			      attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>' />
+			      attribution='&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>contributors, &copy; <a href="https://cartodb.com/attributions" target="_blank">CartoDB</a>' 
+      	 	/>
 			    { this.getMarkers(this.props.coords) }
 			  </Map>
 		  </div>
