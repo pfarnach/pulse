@@ -4,7 +4,7 @@ from setup import basedir
 
 
 class BaseConfig(object):
-    SECRET_KEY = "ASLK!@1kjALKJkjAA%"
+    SECRET_KEY = "AXLK!@1kjALKJkjAA%"
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
