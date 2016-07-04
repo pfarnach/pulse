@@ -15,21 +15,16 @@ def client_pulse(msg):
 
 	ip_address = request.environ['REMOTE_ADDR']
 
-	print "ip_address: " + str(ip_address)
-	print "IP(ip_address).iptype(): " + str(IP(ip_address).iptype())
+	while ip_address:
+		query = text("SELECT latitude, longitude FROM t_ip_coordinates WHERE ip_address LIKE '{}%' LIMIT 1".format(ip_address));
+		result = db.engine.execute(query).first()
 
-	if IP(ip_address).iptype() == 'PUBLIC':
-		while ip_address:
-			query = text("SELECT latitude, longitude FROM t_ip_coordinates WHERE ip_address LIKE '{}%' LIMIT 1".format(ip_address));
-			result = db.engine.execute(query).first()
-
-			print "result: " + str(result)
-
-			if result == None:
-				ip_address = ip_address[:-1]
-			else:
-				break
-	else:
+		if result == None:
+			ip_address = ip_address[:-1]
+		else:
+			break
+	
+	if not result:
 		sql = text('SELECT latitude, longitude FROM t_ip_coordinates OFFSET floor(random()*3870014) LIMIT 1;');
 		result = db.engine.execute(sql).first()
 
