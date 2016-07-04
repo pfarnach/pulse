@@ -15,6 +15,9 @@ def client_pulse(msg):
 
 	ip_address = request.environ['REMOTE_ADDR']
 
+	print "ip_address: " + str(ip_address)
+	print "IP(ip_address).iptype(): " + str(IP(ip_address).iptype())
+
 	if IP(ip_address).iptype() == 'PUBLIC':
 		while ip_address:
 			query = text("SELECT latitude, longitude FROM t_ip_coordinates WHERE ip_address LIKE '{}%' LIMIT 1".format(ip_address));

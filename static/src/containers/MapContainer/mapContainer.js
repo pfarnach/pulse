@@ -31,7 +31,7 @@ class MapContainer extends Component {
 					center={[10, 20]}
 					zoom={2} 
 					minZoom={1}
-					scrollWheelZoom={false} 
+					scrollWheelZoom={false}
 					worldCopyJump={true}>
 			    <TileLayer
 			      url='http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'

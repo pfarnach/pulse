@@ -1,2 +1,2 @@
-web: npm run build:development
+web: sh -c 'cd ./static && npm run build:development'
 web: python manage.py runserver
