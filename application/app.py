@@ -13,7 +13,7 @@ socketio = SocketIO(app)
 def client_pulse(msg):
 	'''Called when server receives pulse msg from client'''
 
-	ip_address = request.environ['REMOTE_ADDR']
+	ip_address = request.remote_addr
 
 	while ip_address:
 		queryString = "SELECT latitude, longitude FROM t_ip_coordinates WHERE ip_address LIKE '{}%' LIMIT 1".format(ip_address)
