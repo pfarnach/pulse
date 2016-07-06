@@ -14,18 +14,23 @@ def client_pulse(msg):
 	'''Called when server receives pulse msg from client'''
 
 	ip_address = request.remote_addr
-	print "request.headers['X-Forwarded-For']: " + str(request.headers['X-Forwarded-For'])
+	print "request.headers['X-Forwarded-For']: " + str(request.headers.getlist("X-Forwarded-For"))
 
-	while ip_address:
-		queryString = "SELECT latitude, longitude FROM t_ip_coordinates WHERE ip_address LIKE '{}%' LIMIT 1".format(ip_address)
-		print "queryString: " + queryString
-		query = text(queryString);
-		result = db.engine.execute(query).first()
+	if IP(ip_address).iptype() == 'PUBLIC':
+		while ip_address:
+			queryString = "SELECT latitude, longitude FROM t_ip_coordinates WHERE ip_address LIKE '{}%' LIMIT 1".format(ip_address)
+			print "queryString: " + queryString
+			query = text(queryString);
+			result = db.engine.execute(query).first()
 
-		if result == None:
-			ip_address = ip_address[:-1]
-		else:
-			break
+			if result == None:
+				ip_address = ip_address[:-1]
+			else:
+				break
+	else:
+		queryString = "SELECT latitude, longitude FROM t_ip_coordinates OFFSET floor(random()*3870014) LIMIT 1;"
+		sql = text(queryString);
+		result = db.engine.execute(sql).first()
 	
 	if not result:
 		sql = text('SELECT latitude, longitude FROM t_ip_coordinates OFFSET floor(random()*3870014) LIMIT 1;');

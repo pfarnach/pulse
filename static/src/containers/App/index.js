@@ -16,7 +16,7 @@ export class App extends Component {
             <h1 className="title"><span className="title-1">LGBTQ</span><span className="title-2">Pulse</span></h1>
           </div>
           <MapContainer />
-          <button onClick={()=>sendPulse()}></button>
+          <button onClick={()=>sendPulse()}>CLICK</button>
           <div className="info-container">
             <div className="how">
               <h3><span className="red">&#60;</span> HOW TO <span className="red">&#62;</span></h3>

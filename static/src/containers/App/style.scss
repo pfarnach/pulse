@@ -61,19 +61,10 @@ $btn-height: 7px;
 			outline: none;
 			transition: all 0.1s;
 
-			&:before {
-				content: '⊂(◉‿◉)⊃';
-				font-size: 1.8em;
-			}
-
 			&:active {
 				transform: translate(0px, ($btn-height - 1px));
 				box-shadow: 0px 0px;
 				border-bottom: 1px solid black;
-
-				&:before {
-					content: '⋂(◉‿◉)⋂';
-				}
 			}
 		}
 
