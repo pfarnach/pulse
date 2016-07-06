@@ -13,8 +13,10 @@ socketio = SocketIO(app)
 def client_pulse(msg):
 	'''Called when server receives pulse msg from client'''
 
-	ip_address = request.remote_addr
-	print "request.headers['X-Forwarded-For']: " + str(request.headers.getlist("X-Forwarded-For"))
+	if request.headers.getlist("X-Forwarded-For"):
+		ip_address = request.headers.getlist("X-Forwarded-For")[0]
+	else:
+		ip_address = request.remote_addr
 
 	if IP(ip_address).iptype() == 'PUBLIC':
 		while ip_address:
