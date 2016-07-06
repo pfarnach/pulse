@@ -14,6 +14,7 @@ def client_pulse(msg):
 	'''Called when server receives pulse msg from client'''
 
 	ip_address = request.remote_addr
+	print "request.headers['X-Forwarded-For']: " + str(request.headers['X-Forwarded-For'])
 
 	while ip_address:
 		queryString = "SELECT latitude, longitude FROM t_ip_coordinates WHERE ip_address LIKE '{}%' LIMIT 1".format(ip_address)
