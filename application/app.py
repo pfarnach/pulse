@@ -16,7 +16,9 @@ def client_pulse(msg):
 	ip_address = request.environ['REMOTE_ADDR']
 
 	while ip_address:
-		query = text("SELECT latitude, longitude FROM t_ip_coordinates WHERE ip_address LIKE '{}%' LIMIT 1".format(ip_address));
+		queryString = "SELECT latitude, longitude FROM t_ip_coordinates WHERE ip_address LIKE '{}%' LIMIT 1".format(ip_address)
+		print "queryString: " + queryString
+		query = text(queryString);
 		result = db.engine.execute(query).first()
 
 		if result == None:
